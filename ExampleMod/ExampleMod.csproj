@@ -109,6 +109,7 @@
     </Reference>
     <Reference Include="assembly_valheim">
       <HintPath>..\libs\assembly_valheim.dll</HintPath>
+      <Aliases>Valheim</Aliases>
     </Reference>
     <Reference Include="BepInEx">
       <HintPath>..\libs\BepInEx.dll</HintPath>

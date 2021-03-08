@@ -1,4 +1,7 @@
-﻿using ExampleMod.Util;
+﻿extern alias Valheim;
+using Valheim;
+
+using ExampleMod.Util;
 using HarmonyLib;
 
 namespace ExampleMod
@@ -30,6 +33,8 @@ namespace ExampleMod
         private static void EnableMonoModHooks()
         {
             On.FejdStartup.Awake += OnFejdStartupAwakeMonoModHookShowcase;
+
+            On.FejdStartup.Start +
         }
 
         internal static void DisableMonoModHooks()
