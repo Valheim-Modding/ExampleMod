@@ -1,9 +1,9 @@
 ﻿using ExampleMod.Util;
 using HarmonyLib;
 
-namespace ExampleMod
+namespace ExampleMod.Hooks
 {
-    internal static class ExampleHook
+    internal static class Showcase
     {
         internal static Harmony HarmonyInstance;
 

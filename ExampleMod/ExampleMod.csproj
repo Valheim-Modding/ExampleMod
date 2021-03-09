@@ -72,9 +72,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ValheimLib">
+      <HintPath>..\libs\ValheimLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExampleHook.cs" />
+    <Compile Include="Hooks\Showcase.cs" />
+    <Compile Include="Pieces\Example.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ExampleMod.cs" />
     <Compile Include="Log.cs" />

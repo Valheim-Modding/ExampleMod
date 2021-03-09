@@ -21,7 +21,9 @@ namespace ExampleMod
 
             Log.Init(Logger);
 
-            ExampleHook.Init();
+            Hooks.Showcase.Init();
+
+            Pieces.Example.Init();
         }
 
         /// <summary>
@@ -34,7 +36,7 @@ namespace ExampleMod
         /// </summary>
         private void OnDestroy()
         {
-            ExampleHook.Disable();
+            Hooks.Showcase.Disable();
         }
     }
 }
