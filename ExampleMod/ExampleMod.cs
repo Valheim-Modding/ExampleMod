@@ -24,6 +24,8 @@ namespace ExampleMod
             Hooks.Showcase.Init();
 
             Pieces.Example.Init();
+
+            Mobs.Example.Init();
         }
 
         /// <summary>

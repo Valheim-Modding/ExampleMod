@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hooks\Showcase.cs" />
+    <Compile Include="Mobs\Example.cs" />
     <Compile Include="Pieces\Example.cs" />
     <Compile Include="Properties\IgnoreAccessModifiers.cs" />
     <Compile Include="ExampleMod.cs" />
