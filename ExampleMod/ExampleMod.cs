@@ -26,6 +26,8 @@ namespace ExampleMod
             Pieces.Example.Init();
 
             Mobs.Example.Init();
+
+            StatusEffect.Example.Init();
         }
 
         /// <summary>

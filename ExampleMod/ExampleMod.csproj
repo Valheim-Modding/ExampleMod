@@ -84,6 +84,7 @@
     <Compile Include="ExampleMod.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusEffects\Example.cs" />
     <Compile Include="Util\CoroutineExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
