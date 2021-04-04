@@ -34,6 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{8670
 	ProjectSection(SolutionItems) = preProject
 		scripts\mono-2.0-bdwgc.dll = scripts\mono-2.0-bdwgc.dll
 		scripts\pdb2mdb.exe = scripts\pdb2mdb.exe
+		Unity Project\Assets\Editor\Pipeline.cs = Unity Project\Assets\Editor\Pipeline.cs
 		scripts\postbuild.sh = scripts\postbuild.sh
 		scripts\prebuild.sh = scripts\prebuild.sh
 	EndProjectSection

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ExampleMod.Util;
+using System.Collections.Generic;
 using UnityEngine;
 using ValheimLib;
 using ValheimLib.ODB;
@@ -37,7 +38,16 @@ namespace ExampleMod.Pieces
 
         private static void AddPieceFromPrefab()
         {
+            AssetBundle assetBundle = AssetBundleHelper.GetFromResources("example_mod");
+            GameObject cubePrefab = assetBundle.LoadAsset<GameObject>("Assets/Prefab/Cube.prefab");
+            cubePrefab.FixReferences();
+            GameObject cloned = cubePrefab.InstantiateClone("SimpleCube");
 
+            GameObject hammerPrefab = Prefab.Cache.GetPrefab<GameObject>("_HammerPieceTable");
+            PieceTable hammerTable = hammerPrefab.GetComponent<PieceTable>();
+            hammerTable.m_pieces.Add(cloned.gameObject);
+
+            assetBundle.Unload(false);
         }
 
     }

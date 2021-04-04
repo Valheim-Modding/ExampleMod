@@ -32,4 +32,4 @@ sed -i "s/\"1.0.0\"/$version/" "$CREATEPROJECTPATH/Plugin/Plugin.cs"
 echo ""
 echo "----------------------------GENERATE ASSET BUNDLE------------------------------------------"
 # execute our pipeline script in batch mode of Unity
-exec "$UNITYPATH" -batchmode -quit -projectPath "$CREATEPROJECTPATH" -executeMethod Pipeline.BuildAssetBundles -nographics -stackTraceLogType Full -disable-gpu-skinning
+exec "$UNITYPATH" -batchmode -quit -projectPath "$CREATEPROJECTPATH/Unity Project" -executeMethod Pipeline.BuildAssetBundles -nographics -stackTraceLogType Full -disable-gpu-skinning
