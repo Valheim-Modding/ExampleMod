@@ -1,0 +1,11 @@
+{
+  "name": "ExampleMod",
+  "version_number": "0.0.1",
+  "website_url": "https://github.com/Valheim-Modding/ExampleMod",
+  "description": "Description of your Valheim mod",
+  "dependencies": [
+    "denikson-BepInExPack_Valheim-5.4.800",
+    "ValheimModding-HookGenPatcher-0.0.2",
+    "ValheimModding-ValheimLib-0.0.12"
+  ]
+}
