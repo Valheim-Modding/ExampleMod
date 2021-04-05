@@ -1,13 +1,47 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMod", "ExampleMod\ExampleMod.csproj", "{9287FFCB-44C7-4F80-A6CA-341E0C1DF059}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin", "Plugin\Plugin.csproj", "{9287FFCB-44C7-4F80-A6CA-341E0C1DF059}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DFEB880-6A9A-4A64-B908-5B9CA14BD967}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}"
 	ProjectSection(SolutionItems) = preProject
+		icon.png = icon.png
+		manifest.json = manifest.json
+		Solution.targets = Solution.targets
+		unex.yml = unex.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{A70CE2FD-4DFE-4CF2-8F57-A48E6DA61227}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{DC079436-A7C7-40DD-8439-7B77BBA08E8B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{F376B089-D541-40A1-9AAC-79C341EB321D}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{86701F57-0FC0-4976-9F64-D1D3AF9E8DC8}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\mono-2.0-bdwgc.dll = scripts\mono-2.0-bdwgc.dll
+		scripts\pdb2mdb.exe = scripts\pdb2mdb.exe
+		Unity Project\Assets\Editor\Pipeline.cs = Unity Project\Assets\Editor\Pipeline.cs
+		scripts\postbuild.sh = scripts\postbuild.sh
+		scripts\prebuild.sh = scripts\prebuild.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{27B57855-8B39-4ECD-9513-06B53A5F9843}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
 EndProject
 Global
@@ -24,7 +58,14 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A70CE2FD-4DFE-4CF2-8F57-A48E6DA61227} = {54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}
+		{DC079436-A7C7-40DD-8439-7B77BBA08E8B} = {54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}
+		{F376B089-D541-40A1-9AAC-79C341EB321D} = {54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}
+		{86701F57-0FC0-4976-9F64-D1D3AF9E8DC8} = {54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}
+		{27B57855-8B39-4ECD-9513-06B53A5F9843} = {54CF79DF-91BA-4D6B-BFB0-EA4804CA266D}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {15521CB8-E30B-4BCB-B013-0AD973057EF7}
+		SolutionGuid = {F7261BF8-44BE-4D75-AE11-565EE8160450}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ValheimLib</name>
+    </assembly>
+    <members>
+        <member name="T:ValheimLib.Mock`1">
+            <summary>
+            Helper class for creating Mock for a given vanilla Component
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:ValheimLib.ODB.ObjectDBHelper">
+            <summary>
+            Helper class for registering custom items, recipes, and status effects to the game ObjectDB
+            </summary>
+        </member>
+        <member name="F:ValheimLib.ODB.ObjectDBHelper.OnAfterInit">
+            <summary>
+            Event that get fired after the ObjectDB get init and filled with custom items.
+            Your code will execute once unless you resub, the event get cleared after each fire.
+            </summary>
+        </member>
+        <member name="T:ValheimLib.Spawn.SpawnSystemHelper">
+            <summary>
+            Highly recommend to check the example available <see href="https://github.com/Valheim-Modding/ExampleMod/blob/master/ExampleMod/Mobs/Example.cs">HERE</see>
+            </summary>
+        </member>
+        <member name="F:ValheimLib.Spawn.SpawnSystemHelper.OnAfterInit">
+            <summary>
+            Event that get fired after the SpawnSystem get init for the first time.
+            An example on how it could be used is available  
+            <see href="https://github.com/Valheim-Modding/ExampleMod/blob/master/ExampleMod/Mobs/Example.cs">HERE</see>
+            </summary>
+        </member>
+        <member name="T:ValheimLib.Util.Events.EventsHelper">
+            <summary>
+            Helper class for C# Events
+            </summary>
+        </member>
+        <member name="M:ValheimLib.Util.Events.EventsHelper.SafeInvoke(System.Action)">
+            <summary>
+            Try catch the delegate chain so that it doesnt break on the first failing Delegate
+            </summary>
+            <param name="events"></param>
+        </member>
+        <member name="M:ValheimLib.Util.Events.EventsHelper.SafeInvoke``1(System.Action{``0},``0)">
+            <summary>
+            Try catch the delegate chain so that it doesnt break on the first failing Delegate
+            </summary>
+            <typeparam name="TArg1"></typeparam>
+            <param name="events"></param>
+            <param name="arg1"></param>
+        </member>
+        <member name="T:ValheimLib.Prefab">
+            <summary>
+            Helper class for everything Prefab related
+            </summary>
+        </member>
+        <member name="F:ValheimLib.Prefab.ModdedPrefabsParentName">
+            <summary>
+            Name of the Root GameObject that have as childs every Modded GameObject done through InstantiateClone.
+            </summary>
+        </member>
+        <member name="F:ValheimLib.Prefab.MockPrefix">
+            <summary>
+            Prefix used by the Mock System to recognize Mock gameObject that must be replaced at some point.
+            </summary>
+        </member>
+        <member name="P:ValheimLib.Prefab.Parent">
+            <summary>
+            Parent is the Root GameObject that have as childs every Modded GameObject done through InstantiateClone.
+            Feel free to add your modded prefabs here too
+            </summary>
+        </member>
+        <member name="M:ValheimLib.Prefab.NetworkRegister(UnityEngine.GameObject)">
+            <summary>
+            Allow you to register to the ZNetScene list so that its correctly networked by the game.
+            </summary>
+            <param name="prefab">Prefab to register to the ZNetScene list</param>
+        </member>
+        <member name="M:ValheimLib.Prefab.InstantiateClone(UnityEngine.GameObject,System.String,System.Boolean)">
+            <summary>
+            Allow you to clone a given prefab without modifying the original. Also handle the networking and unique naming.
+            </summary>
+            <param name="gameObject">prefab that you want to clone</param>
+            <param name="nameToSet">name for the new clone</param>
+            <param name="zNetRegister">Must be true if you want to have the prefab correctly networked and handled by the ZDO system. True by default</param>
+            <returns></returns>
+        </member>
+        <member name="M:ValheimLib.Prefab.GetRealPrefabFromMock(UnityEngine.Object,System.Type)">
+            <summary>
+            Will try to find the real vanilla prefab from the given mock
+            </summary>
+            <param name="unityObject"></param>
+            <param name="mockObjectType"></param>
+            <returns>the real prefab</returns>
+        </member>
+        <member name="M:ValheimLib.Prefab.GetRealPrefabFromMock``1(UnityEngine.Object)">
+            <summary>
+            Will try to find the real vanilla prefab from the given mock
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="unityObject"></param>
+            <returns>the real prefab</returns>
+        </member>
+        <member name="M:ValheimLib.Prefab.FixReferences(System.Object)">
+            <summary>
+            Will attempt to fix every field that are mocks gameObjects / Components from the given object.
+            </summary>
+            <param name="objectToFix"></param>
+        </member>
+        <member name="M:ValheimLib.Prefab.FixReferences(UnityEngine.GameObject)">
+            <summary>
+            Fix the components fields of a given gameObject
+            </summary>
+            <param name="gameObject"></param>
+        </member>
+        <member name="M:ValheimLib.Prefab.CloneFields(UnityEngine.GameObject,UnityEngine.GameObject)">
+            <summary>
+            Will clone all fields from gameObject to objectToClone
+            </summary>
+            <param name="gameObject"></param>
+            <param name="objectToClone"></param>
+        </member>
+        <member name="T:ValheimLib.Prefab.Cache">
+            <summary>
+            Helper class for caching gameobjects in the current scene.
+            </summary>
+        </member>
+        <member name="M:ValheimLib.Prefab.Cache.GetPrefab(System.Type,System.String)">
+            <summary>
+            Get an instance of an UnityObject from the current scene with the given name
+            </summary>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ValheimLib.Prefab.Cache.GetPrefab``1(System.String)">
+            <summary>
+            Get an instance of an UnityObject from the current scene with the given name
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ValheimLib.Prefab.Cache.GetPrefabs(System.Type)">
+            <summary>
+            Get the instances of UnityObjects from the current scene with the given type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,121 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Changelog
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.github_token }}
+          git-message: 'chore(release): {version}'
+          git-user-name: 'Conventional Changelog Action'
+          git-user-email: 'conventional_changelog@github.actions.com'
+          preset: 'angular'
+          tag-prefix: 'v'
+          output-file: 'CHANGELOG.md'
+          release-count: '10'
+          version-file: './manifest.json'
+          version-path: 'version_number'
+          skip-on-empty: 'true'
+          skip-version-file: 'false'
+          skip-commit: 'false'
+        
+      - name: Read Config
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        id: config
+        uses: juliojimenez/yamler@v0
+        with:
+          yaml-file: unex.yml
+
+      - name: Setup Variables
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        id: vars
+        run: |
+          echo ::set-output name=artifact::Plugin_release_${{ steps.changelog.outputs.tag }}.zip
+          echo ::set-output name=filename::${{ steps.config.outputs.filename }}.dll
+          echo ::set-output name=solution::${{ steps.config.outputs.filename }}.sln
+          echo ::set-output name=modid::${{ steps.config.outputs.modid }}
+
+      - name: Setup dotnet for NexusMod release
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: '3.1.x'
+      
+      - name: Setup dotnet for build
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.x
+          
+      - name: Setup Unity
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: kuler90/setup-unity@v1.0.6
+        with:
+          unity-version: 2019.4.20f1
+
+      - name: Activate Unity
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: kuler90/activate-unity@v1
+        with:
+          unity-username: ${{ secrets.UNITY_LOGIN }}
+          unity-password: ${{ secrets.UNITY_PASSWORD }}
+          unity-authenticator-key: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
+
+      - name: Restore tools
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        run: dotnet tool restore
+        
+      - name: Build and Create the package
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        run: dotnet build ${{ steps.vars.outputs.solution }} -c Release
+          
+      - name: Zip
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        run: |
+          mkdir output
+          mkdir output/plugins
+          cp Plugin/bin/Release/${{ steps.vars.outputs.filename }} output/plugins
+      - uses: papeloto/action-zip@v1
+        with:
+          files: output/ icon.png manifest.json README.md
+          dest: ${{ steps.vars.outputs.artifact }}
+
+      - name: Create GH Release
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.changelog.outputs.tag }}
+          name: Valheim Plugin ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+          artifacts: ${{ steps.vars.outputs.artifact }}
+          token: ${{ secrets.github_token }}
+          
+      - name: Upload to NexusMods
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        run: >
+          dotnet unex upload
+          ${{ steps.vars.outputs.modid }}
+          ${{ steps.vars.outputs.artifact }}
+          -v ${{ steps.changelog.outputs.version }}
+
+          dotnet unex changelog
+          ${{ steps.vars.outputs.version }}
+          "$CHANGELOG_BODY"
+          -m ${{ steps.vars.outputs.modid }}
+        env:
+          UNEX_DEBUG: true
+          UNEX_APIKEY: ${{ secrets.UNEX_API_KEY }}
+          UNEX_COOKIES: ${{ secrets.UNEX_COOKIES }}
+          CHANGELOG_BODY: "${{ steps.changelog.outputs.clean_changelog }}"
